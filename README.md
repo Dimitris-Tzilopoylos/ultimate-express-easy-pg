@@ -1,6 +1,6 @@
-# fastify-easy-pg
+# ultimate-express-easy-pg
 
-A Fastify plugin for simplified PostgreSQL model access using [`easy-psql`](https://www.npmjs.com/package/easy-psql). It automaticaly scans your PostgreSQL tables per schema and registers their models as classes in memory. Please see how the underlying model functions work, by visiting the docs of [`easy-psql`](https://www.npmjs.com/package/easy-psql).
+A ultimate-express plugin for simplified PostgreSQL model access using [`easy-psql`](https://www.npmjs.com/package/easy-psql). It automaticaly scans your PostgreSQL tables per schema and registers their models as classes in memory. Please see how the underlying model functions work, by visiting the docs of [`easy-psql`](https://www.npmjs.com/package/easy-psql).
 
 ## Features
 
@@ -14,7 +14,7 @@ A Fastify plugin for simplified PostgreSQL model access using [`easy-psql`](http
 ## Installation
 
 ```bash
-npm install fastify-easy-pg
+npm install ultimate-express-easy-pg
 ```
 
 ---
@@ -22,12 +22,11 @@ npm install fastify-easy-pg
 ## Usage
 
 ```ts
-import Fastify from "fastify";
-import { fastifyEasyPG } from "@fastify/easy-pg";
+import express from "ultimate-express";
+import { expressEasyPG } from "@ultimate-express/easy-pg";
 
-const app = Fastify();
 const bootstrap = async () => {
-  await app.register(fastifyEasyPG, {
+  const app = expressEasyPG(express(), {
     host: "localhost",
     port: 5432,
     database: "postgres",
@@ -47,13 +46,15 @@ const bootstrap = async () => {
     ],
   });
 
+  await app.initEasyPG();
+
   app.get("/users", async (req, reply) => {
     const model = app.easyPG.model({ table: "users", schema: "public" });
     const users = await model.find({});
     reply.send(users);
   });
 
-  app.listen({ port: 3000 });
+  app.listen(3000);
 };
 
 bootstrap();
@@ -100,7 +101,7 @@ await model.find({ include: { comments: true } }); // use the alias
 
 ## Accessing `easyPG` Utilities
 
-Once registered, `fastify.easyPG` provides:
+Once registered, `app.easyPG` provides:
 
 - `model({ table, schema?, connection? })`: Get a model instance
 - `db`: Access the underlying `DB` class from `easy-psql`
