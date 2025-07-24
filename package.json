@@ -1,0 +1,33 @@
+{
+  "name": "ultimate-express-easy-pg",
+  "version": "0.0.1",
+  "description": "Ultimate Express plugin wrapper around test-easy-psql",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --watch"
+  },
+  "homepage": "https://github.com/Dimitris-Tzilopoylos/ultimate-express-easy-pg#readme",
+  "keywords": [
+    "ultimate-express",
+    "express",
+    "postgres",
+    "easy-psql"
+  ],
+  "author": "Dimitrios Tzilopoylos",
+  "license": "ISC",
+  "dependencies": {
+    "easy-pg-scanner": "^1.0.9",
+    "easy-psql": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "ultimate-express": "^2.0.9"
+  }
+}
