@@ -1,7 +1,7 @@
 {
   "name": "ultimate-express-easy-pg",
-  "version": "0.0.1",
-  "description": "Ultimate Express plugin wrapper around test-easy-psql",
+  "version": "0.0.2",
+  "description": "Ultimate Express plugin wrapper around easy-psql",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
