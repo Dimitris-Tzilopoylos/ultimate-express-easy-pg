@@ -48,10 +48,10 @@ const bootstrap = async () => {
 
   await app.initEasyPG();
 
-  app.get("/users", async (req, reply) => {
+  app.get("/users", async (req, res) => {
     const model = app.easyPG.model({ table: "users", schema: "public" });
     const users = await model.find({});
-    reply.send(users);
+    res.send(users);
   });
 
   app.listen(3000);
